@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "{{url_for('static',filename='styles/base0.css') }}" >
+		{% if title %}
+		<title> {{ title }} </title>
+		{% else %}
+		<title>Forgot a title</title>
+		{% endif %}
+	</head>
+
+	<body>
+		<ul>
+			<li><a href="{{ url_for('intro_page') }}" title="Wacky page">Index</a></li>
+			<li><a href="{{ url_for('home') }}" title= "A useless homepage">Home</a></li>
+			<li><a href="{{ url_for('login_page') }}">Login</a></li>
+			<!-- <li><a href="/hidden" title="This page is hidden until you login">Hidden</a></li> -->
+
+			
+		</ul>
+		<hr>
+
+			{% block body %}
+
+				<h1>Wacky Website !!</h1>
+
+				<p>This is the first paragraph allowing us to type what we want.</p>
+
+				<br>
+
+				<h2>This header isn't as important</h2>
+
+				<p>This paragraph is following under the second header and is therefore not as interesting.</p>
+
+			{% endblock %}
+
+		<hr>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<ul>
+				{% for message in messages %}
+				<li> {{ message }} </li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			{% endwith %}
+
+
+	</body>
+
+</html>
+
+
