@@ -13,12 +13,50 @@
 		<ul>
 			<li><a href="{{ url_for('intro_page') }}" title="Wacky page">Index</a></li>
 			<li><a href="{{ url_for('home') }}" title= "A useless homepage">Home</a></li>
+			{% if current_user.is_anonymous %}
 			<li><a href="{{ url_for('login_page') }}">Login</a></li>
-			<!-- <li><a href="/hidden" title="This page is hidden until you login">Hidden</a></li> -->
+			{% else %}
+			<li><a href="{{ url_for('logout') }}">Logout</a></li>
+			<li><a href="{{ url_for('hidden_page') }}" title="This page is hidden until you login">Hidden</a></li>
+			{% endif %}
+
+		
 
 			
 		</ul>
+
+		<div id="mySidenav" class="sidenav">
+			<a href = "javascript:void(0)" class = "closebtn" onclick = "closeNav()">&times;</a>
+			<a href="{{ url_for('intro_page') }}" title="Wacky page">Index</a>
+			<a href="{{ url_for('home') }}" title= "A useless homepage">Home</a>
+			{% if current_user.is_anonymous %}
+			<a href="{{ url_for('login_page') }}">Login</a>
+			{% else %}
+			<a href="{{ url_for('logout') }}">Logout</a>
+			<li><a href="{{ url_for('hidden_page') }}">Hidden</a></li>
+			{% endif %}
+
+		</div>
+
+		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+		<script>
+			function openNav() {
+				document.getElementById("mySidenav").style.width = "100%";
+				// document.getElementById("main").style.marginLeft = "250px";
+				document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+			}
+
+			function closeNav() {
+				document.getElementById("mySidenav").style.width = "0";
+				// document.getElementById("main").style.marginLeft= "0";
+				document.body.style.backgroundColor = "white";
+			}
+		</script> 
+
 		<hr>
+
+
 
 			{% block body %}
 
@@ -49,5 +87,4 @@
 	</body>
 
 </html>
-
 

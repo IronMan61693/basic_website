@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
 {% block body %}
-	<h1> WOOOO </h1>
+	<h1> WOOOO {{ current_user.username }} </h1>
 
-	<p>This page isn't really accomplishing much. </p>
+	{% for post in posts %}
+	<div><p>{{ post.author.username }} says: <b> {{ post.body }}</b></p></div>
+	{% endfor %}
 
-	<p>We did manage to get rid of the bottom header. </p>
+	<p>Have a fantastic day. </p>
 
 {% endblock %}
